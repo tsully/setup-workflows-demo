@@ -1,13 +1,22 @@
 version: 2.1
-setup: true
 orbs:
-  path-filtering: circleci/path-filtering@0.0.1
+  node: circleci/node@4.1.0
+jobs:
+  test:
+    docker:
+      - image: cimg/node:12.20.0
+    steps:
+      - checkout
+      - run:
+          name: "Changing directory"
+          command: |
+            cd react-app-1"
+      - node/install-packages:
+          pkg-manager: yarn
+      # - run:
+      #     command: yarn run test
+      #     name: Run YARN tests
 workflows:
-  generate-config:
+  node-tests:
     jobs:
-      - path-filtering/filter:
-          base-revision: main
-          config-path: .circleci/continue-config.yml
-          mapping: |
-            react-app-1/.* build-react-app-1 true
-            react-app-2/.* build-react-app-2 true
+      - test
