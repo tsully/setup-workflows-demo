@@ -17,7 +17,7 @@ jobs:
     steps:
       - checkout
       - run:
-          command: cd project/react-app-1
+          command: cd ~/project/react-app-1
           name: go to react-app-1 directory
       - node/install-packages:
           pkg-manager: yarn
@@ -30,8 +30,8 @@ jobs:
     steps:
       - checkout
       - run:
-          command: cd project/react-app-2
-          name: go to react-app-1 directory
+          command: cd ~/project/react-app-2
+          name: go to react-app-2 directory
       - node/install-packages:
           pkg-manager: yarn
       - run:
