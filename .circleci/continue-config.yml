@@ -20,8 +20,11 @@ jobs:
     working_directory: ~/project/react-app-1
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn
+      - run:
+          command: yarn run install
+          name: Run YARN install
+      # - node/install-packages:
+      #     pkg-manager: yarn
       - run:
           command: yarn run test
           name: Run YARN tests
