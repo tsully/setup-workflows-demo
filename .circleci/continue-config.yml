@@ -10,15 +10,16 @@ parameters:
     type: boolean
     default: false
 
+executors:
+
+
 jobs:
   echo-1:
     docker:
       - image: cimg/node:12.20.0
+    working_directory: ~/project/react-app-1
     steps:
       - checkout
-      - run:
-          command: cd ~/project/react-app-1
-          name: go to react-app-1 directory
       - node/install-packages:
           pkg-manager: yarn
       - run:
@@ -27,11 +28,9 @@ jobs:
   echo-2:
     docker:
       - image: cimg/node:12.20.0
+    working_directory: ~/project/react-app-2
     steps:
       - checkout
-      - run:
-          command: cd ~/project/react-app-2
-          name: go to react-app-2 directory
       - node/install-packages:
           pkg-manager: yarn
       - run:
