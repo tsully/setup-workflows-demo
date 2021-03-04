@@ -1,0 +1,34 @@
+version: 2.1
+
+parameters:
+  build-react-app-1:
+    type: boolean
+    default: false
+  build-react-app-2:
+    type: boolean
+    default: false
+
+jobs:
+  echo-1:
+    - steps:
+      - run:
+          name: "Show system information"
+          command: |
+            echo "Detected change in react-app-1"
+  echo-2:
+    - steps:
+      - run:
+          name: "Show system information"
+          command: |
+            echo "Detected change in react-app-2"
+# orbs:
+#   node: circleci/node@3.0.0
+workflows:
+  build-server:
+    when: << pipeline.parameters.build-react-app-1 >>
+    jobs:
+      - echo-1
+  build-client:
+    when: << pipeline.parameters.build-react-app-2 >>
+    jobs:
+      - echo-2
