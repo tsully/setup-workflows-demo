@@ -21,7 +21,7 @@ jobs:
     steps:
       - checkout
       - run:
-          command: cd react-app-1 && yarn run install
+          command: cd react-app-1 && yarn install
           name: Run YARN install
       # - node/install-packages:
       #     pkg-manager: yarn
