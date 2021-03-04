@@ -21,12 +21,12 @@ jobs:
     steps:
       - checkout
       - run:
-          command: cd project/react-app-1 && yarn run install
+          command: cd react-app-1 && yarn run install
           name: Run YARN install
       # - node/install-packages:
       #     pkg-manager: yarn
       - run:
-          command: cd project/react-app-1 && yarn run test
+          command: cd react-app-1 && yarn run test
           name: Run YARN tests
   echo-2:
     docker:
