@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  node: circleci/node@4.1.0
 
 parameters:
   build-react-app-1:
@@ -10,19 +12,26 @@ parameters:
 
 jobs:
   echo-1:
-    - steps:
+    docker:
+      - image: cimg/node:12.20.0
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
       - run:
-          name: "Show system information"
-          command: |
-            echo "Detected change in react-app-1"
+          command: yarn run test
+          name: Run YARN tests
   echo-2:
-    - steps:
+    docker:
+      - image: cimg/node:12.20.0
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
       - run:
-          name: "Show system information"
-          command: |
-            echo "Detected change in react-app-2"
-# orbs:
-#   node: circleci/node@3.0.0
+          command: yarn run test
+          name: Run YARN tests
+
 workflows:
   build-server:
     when: << pipeline.parameters.build-react-app-1 >>
