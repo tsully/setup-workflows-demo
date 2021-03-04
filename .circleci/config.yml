@@ -10,7 +10,7 @@ jobs:
       - run:
           name: "Changing directory"
           command: |
-            cd react-app-1"
+            cd react-app-1
       - node/install-packages:
           pkg-manager: yarn
       # - run:
