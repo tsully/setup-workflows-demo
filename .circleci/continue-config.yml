@@ -14,38 +14,35 @@ executors:
 
 
 jobs:
-  echo-1:
+  react-app-1-test:
     docker:
       - image: cimg/node:12.20.0
-    # working_directory: ~/project/react-app-1
     steps:
       - checkout
       - run:
           command: cd react-app-1 && yarn install
           name: Run YARN install
-      # - node/install-packages:
-      #     pkg-manager: yarn
       - run:
           command: cd react-app-1 && yarn run test
           name: Run YARN tests
-  echo-2:
+  react-app-2-test:
     docker:
       - image: cimg/node:12.20.0
-    # working_directory: ~/project/react-app-2
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn
       - run:
-          command: yarn run test
+          command: cd react-app-2 && yarn install
+          name: Run YARN install
+      - run:
+          command: cd react-app-2 && yarn run test
           name: Run YARN tests
 
 workflows:
-  build-server:
+  react-app-1:
     when: << pipeline.parameters.build-react-app-1 >>
     jobs:
-      - echo-1
-  build-client:
+      - react-app-1-test
+  react-app-2:
     when: << pipeline.parameters.build-react-app-2 >>
     jobs:
-      - echo-2
+      - react-app-2-test
